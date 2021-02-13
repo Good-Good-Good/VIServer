@@ -46,14 +46,14 @@ class CustomController {
                 status = HttpStatus.CONFLICT
                 return ResponseEntity(null, status)
             }
-            if(regex.containsMatchIn(customer.id) && regex.containsMatchIn(customer.password) && regex.containsMatchIn(customer.name)){
+//            if(regex.containsMatchIn(customer.id) && regex.containsMatchIn(customer.password) && regex.containsMatchIn(customer.name)){
                 status = HttpStatus.OK
                 customerService.createCustomer(customer)
                 return ResponseEntity(customerService.getCustomer(customer.id), status)
-            }else{
-                status = HttpStatus.FORBIDDEN
-                return ResponseEntity(null, status)
-            }
+//            }else{
+//                status = HttpStatus.FORBIDDEN
+//                return ResponseEntity(null, status)
+//            }
         }
     }
 
@@ -83,11 +83,11 @@ class CustomController {
 
 
 
-@RestController
-class gameLogic {
-
-    @PostMapping("/RockSissorPaper")
-    fun rspLogic(@RequestBody customer:Customer): ResponseEntity<String> {
-        val status: HttpStatus = HttpStatus.OK
-    }
-}
+//@RestController
+//class gameLogic {
+//
+//    @PostMapping("/RockSissorPaper")
+//    fun rspLogic(@RequestBody customer:Customer): ResponseEntity<String> {
+//        val status: HttpStatus = HttpStatus.OK
+//    }
+//}
