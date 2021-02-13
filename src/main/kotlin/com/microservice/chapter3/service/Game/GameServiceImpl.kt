@@ -10,7 +10,9 @@ import com.microservice.chapter3.service.Customer.Customer
 //        var playerSelection = gamePlayer.selection
 //        var differ = playerSelection - computerSelection
 //
-//        if(differ == 0){ // draw
+//        if((playerSelection == 0 && computerSelection == 2) && (playerSelection == 2) && ){ //lose
+//
+//        }else if(differ == 0){ // draw
 //
 //        }else if(differ > 0){ // win
 //
@@ -31,12 +33,12 @@ import com.microservice.chapter3.service.Customer.Customer
 주먹 주먹 0 0 0
 주먹 보  0 2 -2
 
-가위 가위 1 1
-가위 주먹 1 0
-가위 보  1 2
+가위 가위 1 1 0
+가위 주먹 1 0 1
+가위 보  1 2 -1
 
-보 가위 2 1
-보 주먹 2 0
-보 보
+보 가위 2 1 1
+보 주먹 2 0 2
+보 보  2 2 0
 
  */
