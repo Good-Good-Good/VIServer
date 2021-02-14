@@ -95,28 +95,42 @@ class CustomController {
         var differ = playerSelection - computerSelection
 
         var player = customerService.getCustomer(gamePlayer.id)
+
         if(player != null) { // if the player exist in the databse
-            var currentMoney = player.money
-            var result = 0
-            if ((playerSelection == 0 && computerSelection == 2) || (playerSelection == 2 && computerSelection == 1)) { //lose
-                currentMoney = (currentMoney.toDouble() * 0.1).toInt()
-                result = 1
-            } else if (differ == 0) { // draw
-                currentMoney = (currentMoney.toDouble() * 1.1).toInt()
-                result = 2
-            } else if (differ < 0 || (playerSelection == 2 && computerSelection == 0)) { // win
-                currentMoney = currentMoney * 2
-                result = 0
-            } else if (differ > 0) { //lose
-                currentMoney = (currentMoney.toDouble() * 0.1).toInt()
-                result = 1
+
+            var betMoney = gamePlayer.betAmount
+            var playerMoney = player.money
+
+            if(betMoney <= playerMoney) {
+
+                var currentMoney = betMoney
+                player.money -= betMoney
+
+                var result = 0
+                if ((playerSelection == 0 && computerSelection == 2) || (playerSelection == 2 && computerSelection == 1)) { //lose
+                    currentMoney = (currentMoney.toDouble() * 0.1).toInt()
+                    result = 1
+                } else if (differ == 0) { // draw
+                    currentMoney = (currentMoney.toDouble() * 1.1).toInt()
+                    result = 2
+                } else if (differ < 0 || (playerSelection == 2 && computerSelection == 0)) { // win
+                    currentMoney = currentMoney * 2
+                    result = 0
+                } else if (differ > 0) { //lose
+                    currentMoney = (currentMoney.toDouble() * 0.1).toInt()
+                    result = 1
+                }
+
+                player.money += currentMoney
+                customerService.updateCustomer(player.id, player)
+                gameResult.computerSelection = computerSelection
+                gameResult.result = result
+                gameResult.userMoneyAfterGame = player.money
+                return ResponseEntity(gameResult, status)
+            }else{
+                status = HttpStatus.CONFLICT
+                return ResponseEntity(null, status)
             }
-            player.money = currentMoney
-            customerService.updateCustomer(player.id, player)
-            gameResult.computerSelection = computerSelection
-            gameResult.result = result
-            gameResult.userMoneyAfterGame = currentMoney
-            return ResponseEntity(gameResult, status)
         }else { //if the player doesn't exist int the databse
             status = HttpStatus.CONFLICT
             return ResponseEntity(null, status)
