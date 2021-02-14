@@ -47,7 +47,7 @@ class CustomController {
             status = HttpStatus.CONFLICT
             return ResponseEntity(null, status)
         }else{
-            val regex = """^[\w]+$""".toRegex()
+//            val regex = """^[\w]+$""".toRegex()
             if(customerService.getCustomer(customer.id) != null){
                 status = HttpStatus.CONFLICT
                 return ResponseEntity(null, status)
