@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.microservice.chapter3.Chapter3ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.935 s - in com.microservice.chapter3.Chapter3ApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.2 s - in com.microservice.chapter3.Chapter3ApplicationTests
